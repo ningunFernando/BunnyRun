@@ -92,6 +92,9 @@
         },
         {
             "m_Id": "29d244f172da4e14b2a3ed3d345451d4"
+        },
+        {
+            "m_Id": "36129491b1764659b54234fbc6845a01"
         }
     ],
     "m_GroupDatas": [],
@@ -151,6 +154,20 @@
                     "m_Id": "a49b1928af084e97adb28c9deb4b51cc"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "36129491b1764659b54234fbc6845a01"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "b8268863cbd74d408bd0bfeeddc84e23"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -861,6 +878,51 @@
     },
     "m_Labels": [],
     "m_Space": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
+    "m_ObjectId": "36129491b1764659b54234fbc6845a01",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "VertexOffsetCurve",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1857.37451171875,
+            "y": -139.3841094970703,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b4383cb7341f41b1881f819333f371e7"
+        },
+        {
+            "m_Id": "df9a09e2d0a4480e97d9a668eb43f72c"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"212394aabb287ad4fb375272eafa9aae\",\n        \"type\": 3\n    }\n}",
+    "m_PropertyGuids": [
+        "ae53d906-da27-4548-93a6-210dae56fb37"
+    ],
+    "m_PropertyIds": [
+        -775818468
+    ],
+    "m_Dropdowns": [],
+    "m_DropdownSelectedEntries": []
 }
 
 {
@@ -2092,6 +2154,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "b4383cb7341f41b1881f819333f371e7",
+    "m_Id": -775818468,
+    "m_DisplayName": "CurvedSettings",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_CurvedSettings",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "b5f1c0fce8b64b5db91ce1ce2e25d0a6",
     "m_Group": {
@@ -2497,6 +2582,29 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "df9a09e2d0a4480e97d9a668eb43f72c",
+    "m_Id": 1,
+    "m_DisplayName": "Out_Vector3",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "OutVector3",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
