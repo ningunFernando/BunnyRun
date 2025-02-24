@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class PixelizeFeature : ScriptableRendererFeature
-{
+public class PixelizeFeature :   
     [System.Serializable]
     public class CustomPassSettings
     {
