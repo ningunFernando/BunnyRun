@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject MainMenu;
-    [SerializeField] private GameObject Store;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject store;
+    [SerializeField] private GameObject config;
+    [SerializeField] private GameObject pause;
+    [SerializeField] private GameObject gameplay;
     [SerializeField] private Camera Camera;
 
     [SerializeField] private float transitionDuration ;
@@ -30,7 +33,7 @@ public class UIManager : MonoBehaviour
         if (isTransitioning) return;
 
         isMainMenu = false;
-        MainMenu.SetActive(false);
+        mainMenu.SetActive(false);
 
 
 
@@ -40,13 +43,41 @@ public class UIManager : MonoBehaviour
         transitionTimer = 0.0f;
         isTransitioning = true;
     }
+    public void OpenConfig()
+    {
+        mainMenu.SetActive(false);
+        config.SetActive(true);
+    }
+    public void BackConfig()
+    {
+        mainMenu.SetActive(true);
+        config.SetActive(false);
+
+    }
+    public void StartPlaying()
+    {
+        mainMenu.SetActive(false );
+        gameplay.SetActive(true);
+    }
+
+    public void Pause() 
+    {
+        gameplay.SetActive(false);
+        pause.SetActive(true);
+
+    }
+    public void QuitPause()
+    {
+        gameplay.SetActive(true);
+        pause.SetActive(false);
+    }
 
     public void ReturnToMainMenu()
     {
         if (isTransitioning) return;
 
         isMainMenu = true;
-        Store.SetActive(false);
+        store.SetActive(false);
 
 
 
@@ -74,7 +105,7 @@ public class UIManager : MonoBehaviour
        Quaternion.Angle(Camera.transform.rotation, initialRotation) < 0.1f)
                 {
                     t = 1;
-                    MainMenu.SetActive(true);
+                    mainMenu.SetActive(true);
                 }
             }
             else
@@ -85,7 +116,7 @@ public class UIManager : MonoBehaviour
         Quaternion.Angle(Camera.transform.rotation, targetRotation) < 0.1f)
                 {
                     t = 1;
-                    Store.SetActive(true);
+                    store.SetActive(true);
                 }
             }
 
