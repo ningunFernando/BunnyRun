@@ -42,9 +42,9 @@ public class GyroController : MonoBehaviour
     {
         Quaternion currentRotation = gyro.attitude;
 
-        Vector3 eulerAngles = currentRotation.eulerAngles - baseRotation.eulerAngles;
+        var eulerAngles = currentRotation.eulerAngles.z - baseRotation.eulerAngles.z;
 
-        float normalizedTilt = Mathf.Clamp(eulerAngles.z / 30f, -1f, 1f);
+        float normalizedTilt = Mathf.Clamp(eulerAngles / 1f, -1f, 1f);
 
         return normalizedTilt;
     }
