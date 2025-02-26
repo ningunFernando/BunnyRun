@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5523909162525112438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2466515236241394747}
+  - component: {fileID: 257729068460649780}
+  m_Layer: 0
+  m_Name: RoadSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2466515236241394747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523909162525112438}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &257729068460649780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523909162525112438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ba66e2e1f7d004386c1db8bd725420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadPrefabs:
+  - {fileID: 4057979633901704800, guid: 0736dc4c7ef3956419da0a26baaa9fd5, type: 3}
+  - {fileID: 6502965636999153394, guid: 18a5b1df213d1714fabc3aded8c6a8c1, type: 3}
+  - {fileID: 5436634104039090084, guid: 2fa8b749a9c46e1439dc972931b1bac1, type: 3}
+  - {fileID: 8728785774562103278, guid: c6a5a58d8cb9aa543bbb77b5ee7b33ad, type: 3}
+  - {fileID: 2727943592896549173, guid: b99d14a1ceda48a40afa8e56cc10116e, type: 3}
+  - {fileID: 2727943592896549173, guid: c5d8e2cce21003f45a7e6540147e0b59, type: 3}
+  - {fileID: 8728785774562103278, guid: 590b8ecd43c45e5499d407ad5a5d6485, type: 3}
+  - {fileID: 5436634104039090084, guid: 7a8230d243243074a9f11ece58486aeb, type: 3}
+  - {fileID: 5436634104039090084, guid: 636b3e95a8109054f920e7072be717e1, type: 3}
+  - {fileID: 5436634104039090084, guid: cadc5dfcd1da7a54ea99081d88bd03aa, type: 3}
+  player: {fileID: 0}
+  startPoint: {fileID: 2466515236241394747}
+  initialRoadCount: 20
+  roadSpeed: 5
+  destroyOffset: 3

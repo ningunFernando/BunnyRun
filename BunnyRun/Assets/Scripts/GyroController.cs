@@ -5,12 +5,17 @@ using UnityEngine;
 public class GyroController : MonoBehaviour
 {
     [Header("Gyroscope attributes")]
-    public float speed = 5f;
-    [Tooltip("Higher Values made it less sensible")]public float tiltSensibility;
+    public float speedMin = 1f;  // Velocidad mínima al mover el personaje
+    public float speedMax = 5f;  // Velocidad máxima
+    [Tooltip("Higher Values make it less sensitive")]
+    public float tiltSensitivity = 30f;
+    [Tooltip("Rotation angles where the controller will not send any value")]
+    public float deadZone = 5f;
 
     private bool gyroEnabled;
     private Gyroscope gyro;
     private Quaternion baseRotation;
+    private float currentSpeed = 0f; // Velocidad actual suavizada
 
     private void Start()
     {
@@ -24,7 +29,7 @@ public class GyroController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("This Device doesn't suppot gyroscope");
+            Debug.LogError("This device doesn't support gyroscope");
         }
     }
 
@@ -32,21 +37,38 @@ public class GyroController : MonoBehaviour
     {
         if (gyroEnabled)
         {
-            float tilt = GetTiltNotmalized();
+            float tilt = GetTiltNormalized();
+            tilt *= -1; // Invertir si es necesario
 
-            transform.position += new Vector3(tilt * speed * Time.fixedDeltaTime, 0, 0);
+            // Determinar la velocidad dependiendo de la inclinación
+            float targetSpeed = Mathf.Lerp(speedMin, speedMax, Mathf.Abs(tilt));
+
+            // Suavizar la transición de la velocidad
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.fixedDeltaTime * 5f);
+
+            // Aplicar movimiento
+            transform.position += new Vector3(tilt * currentSpeed * Time.fixedDeltaTime, 0, 0);
         }
     }
 
-    float GetTiltNotmalized()
+    float GetTiltNormalized()
     {
         Quaternion currentRotation = gyro.attitude;
 
-        var eulerAngles = currentRotation.eulerAngles.z - baseRotation.eulerAngles.z;
+        float eulerAnglesZ = currentRotation.eulerAngles.z - baseRotation.eulerAngles.z;
 
-        float normalizedTilt = Mathf.Clamp(eulerAngles / 1f, -1f, 1f);
+        if (eulerAnglesZ > 180f) eulerAnglesZ -= 360f;
+        if (eulerAnglesZ < -180f) eulerAnglesZ += 360f;
 
-        return normalizedTilt;
+        // Aplicamos la "dead zone"
+        if (Mathf.Abs(eulerAnglesZ) < deadZone)
+        {
+            return 0f;
+        }
+
+        // Normalizamos la inclinación
+        float normalizedTilt = eulerAnglesZ / tiltSensitivity;
+
+        return Mathf.Clamp(normalizedTilt, -1f, 1f);
     }
-
 }
