@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VertexOffset_CurvedWorld
+  m_Name: M_VertexOffsert
   m_Shader: {fileID: -6465566751694194690, guid: 72daea9e686d0ac4e96bb01c1172a6fb,
     type: 3}
   m_Parent: {fileID: 0}

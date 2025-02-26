@@ -477,9 +477,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -842.0000610351563,
-            "y": 1164.0,
-            "width": 158.0,
+            "x": 232.00006103515626,
+            "y": 912.9999389648438,
+            "width": 157.99993896484376,
             "height": 34.0
         }
     },
@@ -863,7 +863,7 @@
     "m_ObjectId": "70a95e6b75b54cdb99a9490ef43f0c96",
     "m_Title": "Check Camera Distance From World",
     "m_Position": {
-        "x": -2672.0,
+        "x": -2672.000244140625,
         "y": -391.0
     }
 }
@@ -1651,10 +1651,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -666.3734130859375,
-            "y": 1111.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": 447.9999694824219,
+            "y": 894.9999389648438,
+            "width": 250.00009155273438,
+            "height": 278.99993896484377
         }
     },
     "m_Slots": [
