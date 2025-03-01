@@ -31,5 +31,9 @@ MonoBehaviour:
     folderPath: Assets/Scripts
     extensions:
     - .cs
+  - prefix: M_
+    folderPath: Assets/Materials
+    extensions:
+    - .mat
   organizeParticlePrefabs: 0
   showDetailedLogs: 1
