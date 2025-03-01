@@ -19,9 +19,9 @@ public class RoadSpawner : MonoBehaviour
 
     private List<GameObject> spawnedRoads = new List<GameObject>();
     private Transform lastEndPoint;
-    private Queue<int> recentIndexes = new Queue<int>(); // Guarda los últimos 4 índices usados
+    private Queue<int> recentIndexes = new Queue<int>();
 
-    private int historySize = 4; // Cuántos elementos atrás evitar repetir
+    private int historySize = 4;
 
     void Start()
     {
@@ -76,7 +76,6 @@ public class RoadSpawner : MonoBehaviour
             newIndex = GetUniqueRandomIndex();
         }
 
-        // Debug para verificar si se repite un camino dentro de los últimos 4
         if (recentIndexes.Contains(newIndex))
         {
             Debug.LogWarning($"Repetición detectada: El segmento {newIndex} ya apareció en los últimos {historySize} caminos.");
@@ -86,7 +85,7 @@ public class RoadSpawner : MonoBehaviour
         recentIndexes.Enqueue(newIndex);
         if (recentIndexes.Count > historySize)
         {
-            recentIndexes.Dequeue(); // Eliminar el más antiguo
+            recentIndexes.Dequeue();
         }
 
         Debug.Log($"Se generó el segmento {newIndex}. Historial actual: [{string.Join(", ", recentIndexes)}]");
@@ -119,10 +118,9 @@ public class RoadSpawner : MonoBehaviour
             newIndex = Random.Range(0, roadPrefabs.Length);
             attempts++;
 
-            // Debug para mostrar intentos de evitar repeticiones
             Debug.Log($"Intento {attempts}: Probando el segmento {newIndex}");
 
-        } while (recentIndexes.Contains(newIndex) && attempts < 10); // Máximo 10 intentos para evitar bucles infinitos
+        } while (recentIndexes.Contains(newIndex) && attempts < 10); 
 
         return newIndex;
     }
