@@ -4,10 +4,10 @@ using UnityEngine;
 public class RoadSpawner : MonoBehaviour
 {
     [Tooltip("Put the road prefabs here you can drop all of them all at once")]
-    public GameObject[] roadPrefabs; 
+    public GameObject[] roadPrefabs;
     [Tooltip("Player transform reference")]
     public Transform player;
-    
+
     public Transform startPoint;
     [Tooltip("Amount of roads that will be spawned all the time")]
     public int initialRoadCount = 5;
@@ -19,6 +19,9 @@ public class RoadSpawner : MonoBehaviour
 
     private List<GameObject> spawnedRoads = new List<GameObject>();
     private Transform lastEndPoint;
+    private Queue<int> recentIndexes = new Queue<int>();
+
+    private int historySize = 4;
 
     void Start()
     {
@@ -40,7 +43,7 @@ public class RoadSpawner : MonoBehaviour
     {
         foreach (var road in spawnedRoads)
         {
-            road.transform.position -= new Vector3(0, 0, roadSpeed * Time.deltaTime); 
+            road.transform.position -= new Vector3(0, 0, roadSpeed * Time.deltaTime);
         }
     }
 
@@ -51,10 +54,10 @@ public class RoadSpawner : MonoBehaviour
             GameObject firstRoad = spawnedRoads[0];
             Transform firstEnd = firstRoad.transform.Find("EndPoint");
 
-            if (firstEnd != null && firstEnd.position.z < player.position.z - destroyOffset) 
+            if (firstEnd != null && firstEnd.position.z < player.position.z - destroyOffset)
             {
                 DestroyRoad();
-                SpawnRoad(); 
+                SpawnRoad();
             }
         }
     }
@@ -62,34 +65,64 @@ public class RoadSpawner : MonoBehaviour
     public void SpawnRoad(int fixedIndex = -1)
     {
         GameObject road;
+        int newIndex;
 
         if (fixedIndex >= 0 && fixedIndex < roadPrefabs.Length)
         {
-            road = Instantiate(roadPrefabs[fixedIndex]);
+            newIndex = fixedIndex;
         }
         else
         {
-            road = Instantiate(roadPrefabs[Random.Range(0, roadPrefabs.Length)]);
+            newIndex = GetUniqueRandomIndex();
         }
 
-        // Obtener StartPoint y EndPoint del nuevo segmento
+        if (recentIndexes.Contains(newIndex))
+        {
+            Debug.LogWarning($"Repetición detectada: El segmento {newIndex} ya apareció en los últimos {historySize} caminos.");
+        }
+
+        // Añadir el nuevo índice al historial
+        recentIndexes.Enqueue(newIndex);
+        if (recentIndexes.Count > historySize)
+        {
+            recentIndexes.Dequeue();
+        }
+
+        Debug.Log($"Se generó el segmento {newIndex}. Historial actual: [{string.Join(", ", recentIndexes)}]");
+
+        road = Instantiate(roadPrefabs[newIndex]);
+
         Transform newStart = road.transform.Find("StartPoint");
         Transform newEnd = road.transform.Find("EndPoint");
 
         if (newStart != null && newEnd != null)
         {
-            // Rotar 180° en Y
             road.transform.rotation = Quaternion.Euler(0, 180, 0);
 
-            // Ajustar la posición para que el StartPoint del nuevo segmento coincida con el EndPoint del anterior
             Vector3 offset = newStart.position - road.transform.position;
             road.transform.position = lastEndPoint.position - offset;
 
-            // Actualizar la referencia al EndPoint del nuevo segmento
             lastEndPoint = newEnd;
         }
 
         spawnedRoads.Add(road);
+    }
+
+    private int GetUniqueRandomIndex()
+    {
+        int newIndex;
+        int attempts = 0;
+
+        do
+        {
+            newIndex = Random.Range(0, roadPrefabs.Length);
+            attempts++;
+
+            Debug.Log($"Intento {attempts}: Probando el segmento {newIndex}");
+
+        } while (recentIndexes.Contains(newIndex) && attempts < 10); 
+
+        return newIndex;
     }
 
     private void DestroyRoad()
