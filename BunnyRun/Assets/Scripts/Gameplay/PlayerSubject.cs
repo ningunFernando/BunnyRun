@@ -14,11 +14,12 @@ public class PlayerSubject : MonoBehaviour
     {
         playerObservers.Remove(observer);
     }
-    protected void NotifyObservers()
+    protected void NotifyObservers(PlayerEnum action)
     {
-        playerObservers.ForEach((observer) =>
+        playerObservers.ForEach(observer =>
         {
-            observer.OnNotify();
+            observer.OnNotify(action);
         });
     }
+
 }

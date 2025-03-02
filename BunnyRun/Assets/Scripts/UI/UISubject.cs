@@ -14,11 +14,12 @@ public class UISubject : MonoBehaviour
     {
         uiObservers.Remove(observer);
     }
-    protected void NotifyObservers()
+    protected void NotifyObservers(UIEnum action)
     {
-        uiObservers.ForEach((observer) =>
+        uiObservers.ForEach(observer =>
         {
-            observer.OnNotify();
+            observer.OnNotify(action);
         });
     }
+
 }

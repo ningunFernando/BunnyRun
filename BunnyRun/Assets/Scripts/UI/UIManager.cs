@@ -88,7 +88,10 @@ public class UIManager : UISubject
         isTransitioning = true;
         print(isMainMenu);
     }
-
+    public void ExitPlay()
+    {
+        
+    }
     void Update()
     {
         if (isTransitioning)
