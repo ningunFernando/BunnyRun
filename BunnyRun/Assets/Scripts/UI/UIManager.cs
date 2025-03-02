@@ -90,7 +90,9 @@ public class UIManager : UISubject
     }
     public void ExitPlay()
     {
-        
+        mainMenu.SetActive(true);
+        pause.SetActive(false) ;
+        gameplay.SetActive(false);
     }
     void Update()
     {
