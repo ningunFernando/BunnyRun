@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Carrots : UISubject
+public class Score : UISubject
 {
     // Start is called before the first frame update
     void Start()
@@ -16,8 +16,5 @@ public class Carrots : UISubject
     {
         
     }
-    public void OnNotify()
-    {
-
-    }
+   
 }
