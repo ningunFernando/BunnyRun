@@ -863,7 +863,7 @@
     "m_ObjectId": "70a95e6b75b54cdb99a9490ef43f0c96",
     "m_Title": "Check Camera Distance From World",
     "m_Position": {
-        "x": -2672.000244140625,
+        "x": -2672.0,
         "y": -391.0
     }
 }
@@ -1237,10 +1237,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 46.0,
-            "y": 1347.0,
+            "x": 447.99993896484377,
+            "y": 1266.0,
             "width": 208.0,
-            "height": 350.0
+            "height": 350.0001220703125
         }
     },
     "m_Slots": [
