@@ -1956,7 +1956,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1241272894}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: QuitPause
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5017,6 +5017,7 @@ MonoBehaviour:
   playerSubject: {fileID: 1090455181}
   highscoreText: {fileID: 2067626766}
   scoreText: {fileID: 661940517}
+  scoreText2: {fileID: 2123996200}
   totalCarrotsText: {fileID: 1554739408}
   transitionDuration: 20
 --- !u!1 &1254181536

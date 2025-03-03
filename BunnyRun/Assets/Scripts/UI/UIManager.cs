@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
 
 public class UIManager : MonoBehaviour, PlayerObserver
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
 
     [SerializeField] TextMeshProUGUI highscoreText;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText2;
     [SerializeField] TextMeshProUGUI totalCarrotsText;
     private int score = 0;
     private int highscore = 0;
@@ -70,6 +72,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         score += 1;
         scoreText.text = "Score: " + score.ToString();
+        scoreText2.text = "Score: " + score.ToString();
         if (highscore < score)
         {
             PlayerPrefs.SetInt("highscore", score);
@@ -91,6 +94,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         highscore = PlayerPrefs.GetInt("highscore", 0);
         scoreText.text = "Score: " + score.ToString();
+        scoreText2.text = "Score: " + score.ToString();
         highscoreText.text = "Highscore: " + highscore.ToString();
     }
     private void Loose()
@@ -163,14 +167,22 @@ public class UIManager : MonoBehaviour, PlayerObserver
     }
     public void ExitPlay()
     {
-        mainMenu.SetActive(true);
-        pause.SetActive(false) ;
-        lost.SetActive(false);
-        gameplay.SetActive(false);
+      
         TotalCarrots();
-        print(totalCarrots);
-    }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
+    }
+    public void Restart()
+    {
+        TotalCarrots();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       
+       
+    }
+    private void RestartScreen()
+    {
+      
+    }
 
     public void DeleteInformation()
     {
