@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GyroController : MonoBehaviour
+public class GyroController : PlayerSubject
 {
     [Header("Gyroscope attributes")]
     public float speedMin = 1f;  // Velocidad mínima al mover el personaje
@@ -11,6 +11,8 @@ public class GyroController : MonoBehaviour
     public float tiltSensitivity = 30f;
     [Tooltip("Rotation angles where the controller will not send any value")]
     public float deadZone = 5f;
+    private Rigidbody rb;
+
 
     private bool gyroEnabled;
     private Gyroscope gyro;
@@ -20,6 +22,7 @@ public class GyroController : MonoBehaviour
     private void Start()
     {
         gyroEnabled = SystemInfo.supportsGyroscope;
+        rb = GetComponent<Rigidbody>();
 
         if (gyroEnabled)
         {
@@ -70,5 +73,34 @@ public class GyroController : MonoBehaviour
         float normalizedTilt = eulerAnglesZ / tiltSensitivity;
 
         return Mathf.Clamp(normalizedTilt, -1f, 1f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("carrot"))
+        {
+            NotifyObservers(PlayerEnum.CollectCarrots);
+        }
+        if (other.CompareTag("hazard"))
+        {
+            NotifyObservers(PlayerEnum.Die);
+        }
+    }
+   
+
+    void Update()
+    {
+        Move();
+
+    }
+
+    void Move()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(moveX, 0, moveZ) * 20;
+        Vector3 newVelocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
+        rb.velocity = newVelocity;
     }
 }

@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Runtime.CompilerServices;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, PlayerObserver
 {
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject store;
-    [SerializeField] private GameObject config;
-    [SerializeField] private GameObject pause;
-    [SerializeField] private GameObject gameplay;
-    [SerializeField] private Camera Camera;
+    [SerializeField]  GameObject mainMenu;
+    [SerializeField]  GameObject store;
+    [SerializeField]  GameObject config;
+    [SerializeField]  GameObject pause;
+    [SerializeField]  GameObject gameplay;
+    [SerializeField]  Camera Camera;
 
-    [SerializeField] private float transitionDuration ;
+    [SerializeField] PlayerSubject playerSubject;
+
+    [SerializeField] TextMeshProUGUI highscoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI totalCarrotsText;
+    private int score = 0;
+    private int highscore = 0;
+    private int totalCarrots = 0;
+
+    [SerializeField]  float transitionDuration ;
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
@@ -21,11 +32,62 @@ public class UIManager : MonoBehaviour
     private float transitionTimer = 0.0f;
     private bool isTransitioning = false;
     private bool isMainMenu = true;
+    public void OnNotify(PlayerEnum playerActions)
+    {
+        switch (playerActions)
+        {
+            case(PlayerEnum.CollectCarrots):
+                AddPoint();
+                break;
+        }
+    }
 
+    
+    private void OnEnable()
+    {
+        playerSubject.AddObserver(this);
+    }
+    private void OnDisable()
+    {
+        playerSubject.RemoveObserver(this);
+    }
     void Start()
     {
         initialPosition = Camera.transform.position;
         initialRotation = Camera.transform.rotation;
+      
+        ChangeScore();
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
+        totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+    }
+
+
+    private void AddPoint()
+    {
+        score += 1;
+        scoreText.text = "Score: " + score.ToString();
+        if (highscore < score)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+            highscore = PlayerPrefs.GetInt("highscore", 0);
+            highscoreText.text = "Highscore: " + highscore.ToString();
+        }
+    }
+
+
+    private void TotalCarrots()
+    {
+       
+        totalCarrots += score;
+        PlayerPrefs.SetInt("totalCarrots", totalCarrots);
+        totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+    }
+
+    private void ChangeScore()
+    {
+        highscore = PlayerPrefs.GetInt("highscore", 0);
+        scoreText.text = "Score: " + score.ToString();
+        highscoreText.text = "Highscore: " + highscore.ToString();
     }
 
     public void OpenStore()
@@ -58,6 +120,8 @@ public class UIManager : MonoBehaviour
     {
         mainMenu.SetActive(false );
         gameplay.SetActive(true);
+        score = 0;
+        ChangeScore();
     }
 
     public void Pause() 
@@ -88,6 +152,25 @@ public class UIManager : MonoBehaviour
         isTransitioning = true;
         print(isMainMenu);
     }
+    public void ExitPlay()
+    {
+        mainMenu.SetActive(true);
+        pause.SetActive(false) ;
+        gameplay.SetActive(false);
+        TotalCarrots();
+        print(totalCarrots);
+    }
+
+    public void DeleteInformation()
+    {
+        PlayerPrefs.DeleteAll();
+       
+        score = 0;
+      ChangeScore() ;
+       
+    }
+
+
 
     void Update()
     {
@@ -126,4 +209,6 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+ 
 }
