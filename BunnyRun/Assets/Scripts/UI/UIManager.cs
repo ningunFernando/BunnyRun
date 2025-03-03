@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField]  GameObject config;
     [SerializeField]  GameObject pause;
     [SerializeField]  GameObject gameplay;
+    [SerializeField] GameObject lost;
     [SerializeField]  Camera Camera;
 
     [SerializeField] PlayerSubject playerSubject;
@@ -38,6 +39,9 @@ public class UIManager : MonoBehaviour, PlayerObserver
         {
             case(PlayerEnum.CollectCarrots):
                 AddPoint();
+                break;
+            case(PlayerEnum.Die):
+                Loose();
                 break;
         }
     }
@@ -89,7 +93,12 @@ public class UIManager : MonoBehaviour, PlayerObserver
         scoreText.text = "Score: " + score.ToString();
         highscoreText.text = "Highscore: " + highscore.ToString();
     }
+    private void Loose()
+    {
+        gameplay.SetActive(false);
+        lost.SetActive(true);
 
+    }
     public void OpenStore()
     {
         if (isTransitioning) return;
@@ -156,15 +165,19 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         mainMenu.SetActive(true);
         pause.SetActive(false) ;
+        lost.SetActive(false);
         gameplay.SetActive(false);
         TotalCarrots();
         print(totalCarrots);
     }
 
+
     public void DeleteInformation()
     {
         PlayerPrefs.DeleteAll();
-       
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
+        totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+
         score = 0;
       ChangeScore() ;
        
