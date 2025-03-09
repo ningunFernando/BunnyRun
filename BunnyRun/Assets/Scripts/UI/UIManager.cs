@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField]  GameObject pause;
     [SerializeField]  GameObject gameplay;
     [SerializeField] GameObject lost;
+    [SerializeField] GameObject road;
+    [SerializeField] RoadSpawner roadVelocity;
+
     [SerializeField]  Camera Camera;
 
     [SerializeField] PlayerSubject playerSubject;
@@ -61,7 +64,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         initialPosition = Camera.transform.position;
         initialRotation = Camera.transform.rotation;
-      
+        road.SetActive(false);
         ChangeScore();
         totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
@@ -101,6 +104,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         gameplay.SetActive(false);
         lost.SetActive(true);
+        roadVelocity.roadSpeed = 0;
 
     }
     public void OpenStore()
@@ -135,18 +139,25 @@ public class UIManager : MonoBehaviour, PlayerObserver
         gameplay.SetActive(true);
         score = 0;
         ChangeScore();
+        road.SetActive(true);
     }
 
     public void Pause() 
     {
         gameplay.SetActive(false);
         pause.SetActive(true);
+        roadVelocity.roadSpeed = 0;
+
+
 
     }
     public void QuitPause()
     {
         gameplay.SetActive(true);
         pause.SetActive(false);
+        roadVelocity.roadSpeed = 5;
+
+
     }
 
     public void ReturnToMainMenu()
@@ -164,17 +175,23 @@ public class UIManager : MonoBehaviour, PlayerObserver
         transitionTimer = 0.0f;
         isTransitioning = true;
         print(isMainMenu);
+        road.SetActive(false);
+
     }
     public void ExitPlay()
     {
       
         TotalCarrots();
+        road.SetActive(false);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
     public void Restart()
     {
         TotalCarrots();
+        road.SetActive(false);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
        
        

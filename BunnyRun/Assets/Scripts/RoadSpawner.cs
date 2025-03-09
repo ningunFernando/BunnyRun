@@ -13,7 +13,7 @@ public class RoadSpawner : MonoBehaviour
     public int initialRoadCount = 5;
     [Tooltip("the amount of elements of the prefabs list that will always spawn in this order")]
     private int fixedSegmentCount = 3;
-    public float roadSpeed = 5f;
+    public  float  roadSpeed = 5f;
     [Tooltip("Units that the road will wait to be behind player so it can be destroyed")]
     public int destroyOffset = 3;
 
