@@ -13,7 +13,6 @@ public class GyroController : PlayerSubject
     public float deadZone = 5f;
     private Rigidbody rb;
 
-
     private bool gyroEnabled;
     private Gyroscope gyro;
     private Quaternion baseRotation;

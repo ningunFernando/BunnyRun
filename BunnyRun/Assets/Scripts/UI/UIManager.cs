@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
 
 public class UIManager : MonoBehaviour, PlayerObserver
@@ -11,12 +12,17 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField]  GameObject config;
     [SerializeField]  GameObject pause;
     [SerializeField]  GameObject gameplay;
+    [SerializeField] GameObject lost;
+    [SerializeField] GameObject road;
+    [SerializeField] RoadSpawner roadVelocity;
+
     [SerializeField]  Camera Camera;
 
     [SerializeField] PlayerSubject playerSubject;
 
     [SerializeField] TextMeshProUGUI highscoreText;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText2;
     [SerializeField] TextMeshProUGUI totalCarrotsText;
     private int score = 0;
     private int highscore = 0;
@@ -39,6 +45,9 @@ public class UIManager : MonoBehaviour, PlayerObserver
             case(PlayerEnum.CollectCarrots):
                 AddPoint();
                 break;
+            case(PlayerEnum.Die):
+                Loose();
+                break;
         }
     }
 
@@ -55,7 +64,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         initialPosition = Camera.transform.position;
         initialRotation = Camera.transform.rotation;
-      
+        road.SetActive(false);
         ChangeScore();
         totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
@@ -66,6 +75,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         score += 1;
         scoreText.text = "Score: " + score.ToString();
+        scoreText2.text = "Score: " + score.ToString();
         if (highscore < score)
         {
             PlayerPrefs.SetInt("highscore", score);
@@ -87,9 +97,16 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         highscore = PlayerPrefs.GetInt("highscore", 0);
         scoreText.text = "Score: " + score.ToString();
+        scoreText2.text = "Score: " + score.ToString();
         highscoreText.text = "Highscore: " + highscore.ToString();
     }
+    private void Loose()
+    {
+        gameplay.SetActive(false);
+        lost.SetActive(true);
+        roadVelocity.roadSpeed = 0;
 
+    }
     public void OpenStore()
     {
         if (isTransitioning) return;
@@ -122,18 +139,25 @@ public class UIManager : MonoBehaviour, PlayerObserver
         gameplay.SetActive(true);
         score = 0;
         ChangeScore();
+        road.SetActive(true);
     }
 
     public void Pause() 
     {
         gameplay.SetActive(false);
         pause.SetActive(true);
+        roadVelocity.roadSpeed = 0;
+
+
 
     }
     public void QuitPause()
     {
         gameplay.SetActive(true);
         pause.SetActive(false);
+        roadVelocity.roadSpeed = 5;
+
+
     }
 
     public void ReturnToMainMenu()
@@ -151,20 +175,38 @@ public class UIManager : MonoBehaviour, PlayerObserver
         transitionTimer = 0.0f;
         isTransitioning = true;
         print(isMainMenu);
+        road.SetActive(false);
+
     }
     public void ExitPlay()
     {
-        mainMenu.SetActive(true);
-        pause.SetActive(false) ;
-        gameplay.SetActive(false);
+      
         TotalCarrots();
-        print(totalCarrots);
+        road.SetActive(false);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+    public void Restart()
+    {
+        TotalCarrots();
+        road.SetActive(false);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       
+       
+    }
+    private void RestartScreen()
+    {
+      
     }
 
     public void DeleteInformation()
     {
         PlayerPrefs.DeleteAll();
-       
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
+        totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+
         score = 0;
       ChangeScore() ;
        
