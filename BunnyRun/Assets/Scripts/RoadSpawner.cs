@@ -130,5 +130,20 @@ public class RoadSpawner : MonoBehaviour
         Destroy(spawnedRoads[0]);
         spawnedRoads.RemoveAt(0);
     }
-   
+
+    public void ResetGeneration()
+    {
+        foreach (var road in spawnedRoads)
+        {
+            Destroy(road);
+        }
+        spawnedRoads.Clear();
+        lastEndPoint = startPoint;
+        recentIndexes.Clear();
+        for (int i = 0; i < initialRoadCount; i++)
+        {
+            SpawnRoad(i < fixedSegmentCount ? i : -1);
+        }
+    }
+
 }

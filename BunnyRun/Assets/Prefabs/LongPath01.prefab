@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2908025662248028036}
   m_Layer: 0
   m_Name: Obstacle_T  (1)
-  m_TagString: Untagged
+  m_TagString: hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765721684927359710}
-  m_Mesh: {fileID: 3260051879388352870, guid: be65ca93c25edf74aa0caf34001c63b6, type: 3}
+  m_Mesh: {fileID: 6615131850870103309, guid: fbe78a4f0910b6948a5ed9027cfe8aac, type: 3}
 --- !u!23 &1969471993853899373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -273,7 +273,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6480ea881dd95a54cbcc5e29d80c58c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 9144941628073033653}
   m_Layer: 0
   m_Name: Obstacle_T  (4)
-  m_TagString: Untagged
+  m_TagString: hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,7 +357,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242606863442130417}
-  m_Mesh: {fileID: 3260051879388352870, guid: be65ca93c25edf74aa0caf34001c63b6, type: 3}
+  m_Mesh: {fileID: 6615131850870103309, guid: fbe78a4f0910b6948a5ed9027cfe8aac, type: 3}
 --- !u!23 &6373219132509110379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 1292404421804510826}
   m_Layer: 0
   m_Name: 'Obstacle_T '
-  m_TagString: Untagged
+  m_TagString: hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,7 +780,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5978065025544024159}
-  m_Mesh: {fileID: 3260051879388352870, guid: be65ca93c25edf74aa0caf34001c63b6, type: 3}
+  m_Mesh: {fileID: 6615131850870103309, guid: fbe78a4f0910b6948a5ed9027cfe8aac, type: 3}
 --- !u!23 &6860304371169366869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -838,7 +838,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -906,7 +906,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6480ea881dd95a54cbcc5e29d80c58c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 5250318422604245403}
   m_Layer: 0
   m_Name: Obstacle_T  (2)
-  m_TagString: Untagged
+  m_TagString: hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,7 +990,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858502748644867523}
-  m_Mesh: {fileID: 3260051879388352870, guid: be65ca93c25edf74aa0caf34001c63b6, type: 3}
+  m_Mesh: {fileID: 6615131850870103309, guid: fbe78a4f0910b6948a5ed9027cfe8aac, type: 3}
 --- !u!23 &483581223090453559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1048,7 +1048,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1068,7 +1068,7 @@ GameObject:
   - component: {fileID: 6962237916872245604}
   m_Layer: 0
   m_Name: Obstacle_T  (3)
-  m_TagString: Untagged
+  m_TagString: hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,7 +1095,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8217635983893172466}
-  m_Mesh: {fileID: 3260051879388352870, guid: be65ca93c25edf74aa0caf34001c63b6, type: 3}
+  m_Mesh: {fileID: 6615131850870103309, guid: fbe78a4f0910b6948a5ed9027cfe8aac, type: 3}
 --- !u!23 &2365191019091203420
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1153,7 +1153,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

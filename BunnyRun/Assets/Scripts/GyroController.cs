@@ -5,8 +5,8 @@ using UnityEngine;
 public class GyroController : PlayerSubject
 {
     [Header("Gyroscope attributes")]
-    public float speedMin = 1f;  // Velocidad mínima al mover el personaje
-    public float speedMax = 5f;  // Velocidad máxima
+    public float speedMin = 1f;
+    public float speedMax = 5f; 
     [Tooltip("Higher Values make it less sensitive")]
     public float tiltSensitivity = 30f;
     [Tooltip("Rotation angles where the controller will not send any value")]
@@ -16,7 +16,7 @@ public class GyroController : PlayerSubject
     private bool gyroEnabled;
     private Gyroscope gyro;
     private Quaternion baseRotation;
-    private float currentSpeed = 0f; // Velocidad actual suavizada
+    private float currentSpeed = 0f; 
     [SerializeField] AudioSource source;
 
     GAME_STATE currentGameState = GAME_STATE.MAINMENU;
@@ -49,15 +49,12 @@ public class GyroController : PlayerSubject
             if (currentGameState == GAME_STATE.GAMEPLAY)
             {
                 float tilt = GetTiltNormalized();
-                tilt *= -1; // Invertir si es necesario
+                tilt *= -1; 
 
-                // Determinar la velocidad dependiendo de la inclinación
                 float targetSpeed = Mathf.Lerp(speedMin, speedMax, Mathf.Abs(tilt));
 
-                // Suavizar la transición de la velocidad
                 currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.fixedDeltaTime * 5f);
 
-                // Aplicar movimiento
                 transform.position += new Vector3(tilt * currentSpeed * Time.fixedDeltaTime, 0, 0);
             }
             else
@@ -76,13 +73,12 @@ public class GyroController : PlayerSubject
         if (eulerAnglesZ > 180f) eulerAnglesZ -= 360f;
         if (eulerAnglesZ < -180f) eulerAnglesZ += 360f;
 
-        // Aplicamos la "dead zone"
+
         if (Mathf.Abs(eulerAnglesZ) < deadZone)
         {
             return 0f;
         }
 
-        // Normalizamos la inclinación
         float normalizedTilt = eulerAnglesZ / tiltSensitivity;
 
         return Mathf.Clamp(normalizedTilt, -1f, 1f);

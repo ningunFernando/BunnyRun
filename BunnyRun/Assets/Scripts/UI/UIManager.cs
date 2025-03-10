@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField] TextMeshProUGUI totalCarrotsText;
     private int score = 0;
     private int highscore = 0;
-    private int totalCarrots = 0;
+    private int totalCarrots = 100;
 
     [SerializeField]  float transitionDuration ;
 
@@ -90,8 +90,9 @@ public class UIManager : MonoBehaviour, PlayerObserver
         initialRotation = Camera.transform.rotation;
         road.SetActive(false);
         ChangeScore();
-        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 100);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+        Debug.Log(totalCarrots);
     }
 
 
@@ -227,8 +228,6 @@ public class UIManager : MonoBehaviour, PlayerObserver
         road.SetActive(false);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-       
-       
     }
 
 
