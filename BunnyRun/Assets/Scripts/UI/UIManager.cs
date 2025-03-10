@@ -8,6 +8,8 @@ using System;
 
 public class UIManager : MonoBehaviour, PlayerObserver
 {
+
+    
     [SerializeField]  GameObject mainMenu;
     [SerializeField]  GameObject store;
     [SerializeField]  GameObject config;
@@ -17,10 +19,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField] GameObject road;
     [SerializeField] RoadSpawner roadVelocity;
 
-    [SerializeField]  Camera Camera;
-
-    [SerializeField] PlayerSubject playerSubject;
-
+    [Header("Texts")]
     [SerializeField] TextMeshProUGUI highscoreText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI scoreText2;
@@ -28,8 +27,11 @@ public class UIManager : MonoBehaviour, PlayerObserver
     private int score = 0;
     private int highscore = 0;
     private int totalCarrots = 100;
-
+    [Header("Env")]
     [SerializeField]  float transitionDuration ;
+    [SerializeField] Camera Camera;
+
+    [SerializeField] PlayerSubject playerSubject;
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
@@ -98,7 +100,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
 
     private void AddPoint()
     {
-        score += 1;
+        score += 1000;
         scoreText.text = "Score: " + score.ToString();
         scoreText2.text = "Score: " + score.ToString();
         if (highscore < score)
@@ -117,6 +119,20 @@ public class UIManager : MonoBehaviour, PlayerObserver
         PlayerPrefs.SetInt("totalCarrots", totalCarrots);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
     }
+
+    public int GetTotalCarrots()
+    {
+        return totalCarrots;
+    }
+
+    public void SpendCarrots(int amount)
+    {
+        totalCarrots -= amount;
+        PlayerPrefs.SetInt("totalCarrots", totalCarrots);
+        totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
+    }
+
+
 
     private void ChangeScore()
     {
