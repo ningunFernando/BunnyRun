@@ -8,16 +8,16 @@ using System;
 
 public class UIManager : MonoBehaviour, PlayerObserver
 {
-    [SerializeField]  GameObject mainMenu;
-    [SerializeField]  GameObject store;
-    [SerializeField]  GameObject config;
-    [SerializeField]  GameObject pause;
-    [SerializeField]  GameObject gameplay;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject store;
+    [SerializeField] GameObject config;
+    [SerializeField] GameObject pause;
+    [SerializeField] GameObject gameplay;
     [SerializeField] GameObject lost;
     [SerializeField] GameObject road;
     [SerializeField] RoadSpawner roadVelocity;
 
-    [SerializeField]  Camera Camera;
+    [SerializeField] Camera Camera;
 
     [SerializeField] PlayerSubject playerSubject;
 
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField] TextMeshProUGUI totalCarrotsText;
     private int score = 0;
     private int highscore = 0;
-    private int totalCarrots = 100;
+    [SerializeField] private int totalCarrots = 0;
 
     [SerializeField]  float transitionDuration ;
 
@@ -85,14 +85,14 @@ public class UIManager : MonoBehaviour, PlayerObserver
     }
     void Start()
     {
+    
         GameStateChange(GAME_STATE.MAINMENU);
         initialPosition = Camera.transform.position;
         initialRotation = Camera.transform.rotation;
         road.SetActive(false);
         ChangeScore();
-        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 100);
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
-        Debug.Log(totalCarrots);
     }
 
 
@@ -228,6 +228,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
         road.SetActive(false);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       
+       
     }
 
 
