@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using System;
 
 public class UIManager : MonoBehaviour, PlayerObserver
 {
@@ -38,6 +39,15 @@ public class UIManager : MonoBehaviour, PlayerObserver
     private float transitionTimer = 0.0f;
     private bool isTransitioning = false;
     private bool isMainMenu = true;
+    private static UIManager instance;
+
+    public Action<GAME_STATE> OnGameStateChanged;
+    GAME_STATE currentGameState = GAME_STATE.GAMEPLAY;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     public void OnNotify(PlayerEnum playerActions)
     {
         switch (playerActions)
@@ -50,8 +60,11 @@ public class UIManager : MonoBehaviour, PlayerObserver
                 break;
         }
     }
+    public static UIManager GetInstance()
+    {
+        return instance;
+    }
 
-    
     private void OnEnable()
     {
         playerSubject.AddObserver(this);
@@ -60,8 +73,19 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         playerSubject.RemoveObserver(this);
     }
+
+    public void GameStateChange(GAME_STATE _state)
+    {
+        currentGameState = _state;
+        if (OnGameStateChanged != null)
+        {
+            OnGameStateChanged(currentGameState);
+        }
+        Debug.Log(currentGameState);
+    }
     void Start()
     {
+        GameStateChange(GAME_STATE.MAINMENU);
         initialPosition = Camera.transform.position;
         initialRotation = Camera.transform.rotation;
         road.SetActive(false);
@@ -105,6 +129,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
         gameplay.SetActive(false);
         lost.SetActive(true);
         roadVelocity.roadSpeed = 0;
+        GameStateChange(GAME_STATE.GAMEOVER);
+
 
     }
     public void OpenStore()
@@ -140,6 +166,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
         score = 0;
         ChangeScore();
         road.SetActive(true);
+        GameStateChange(GAME_STATE.GAMEPLAY);
+
     }
 
     public void Pause() 
@@ -147,6 +175,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
         gameplay.SetActive(false);
         pause.SetActive(true);
         roadVelocity.roadSpeed = 0;
+        GameStateChange(GAME_STATE.PAUSE);
+
 
 
 
@@ -155,6 +185,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         gameplay.SetActive(true);
         pause.SetActive(false);
+        GameStateChange(GAME_STATE.GAMEPLAY);
+
         roadVelocity.roadSpeed = 5;
 
 
@@ -176,6 +208,8 @@ public class UIManager : MonoBehaviour, PlayerObserver
         isTransitioning = true;
         print(isMainMenu);
         road.SetActive(false);
+        GameStateChange(GAME_STATE.MAINMENU);
+
 
     }
     public void ExitPlay()
@@ -196,10 +230,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
        
        
     }
-    private void RestartScreen()
-    {
-      
-    }
+
 
     public void DeleteInformation()
     {
@@ -253,4 +284,13 @@ public class UIManager : MonoBehaviour, PlayerObserver
     }
 
  
+}
+public enum GAME_STATE
+{
+    MAINMENU,
+    GAMEPLAY,
+    PAUSE,
+    GAMEOVER,
+    RESTART,
+
 }

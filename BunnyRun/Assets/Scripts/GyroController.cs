@@ -17,11 +17,15 @@ public class GyroController : PlayerSubject
     private Gyroscope gyro;
     private Quaternion baseRotation;
     private float currentSpeed = 0f; // Velocidad actual suavizada
+    [SerializeField] AudioSource source;
+
+    GAME_STATE currentGameState = GAME_STATE.MAINMENU;
 
     private void Start()
     {
         gyroEnabled = SystemInfo.supportsGyroscope;
         rb = GetComponent<Rigidbody>();
+        UIManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
 
         if (gyroEnabled)
         {
@@ -34,22 +38,32 @@ public class GyroController : PlayerSubject
             Debug.LogError("This device doesn't support gyroscope");
         }
     }
-
+    void OnGameStateChanged(GAME_STATE _NewGameState)
+    {
+        currentGameState = _NewGameState;
+    }
     private void FixedUpdate()
     {
         if (gyroEnabled)
         {
-            float tilt = GetTiltNormalized();
-            tilt *= -1; // Invertir si es necesario
+            if (currentGameState == GAME_STATE.GAMEPLAY)
+            {
+                float tilt = GetTiltNormalized();
+                tilt *= -1; // Invertir si es necesario
 
-            // Determinar la velocidad dependiendo de la inclinación
-            float targetSpeed = Mathf.Lerp(speedMin, speedMax, Mathf.Abs(tilt));
+                // Determinar la velocidad dependiendo de la inclinación
+                float targetSpeed = Mathf.Lerp(speedMin, speedMax, Mathf.Abs(tilt));
 
-            // Suavizar la transición de la velocidad
-            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.fixedDeltaTime * 5f);
+                // Suavizar la transición de la velocidad
+                currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.fixedDeltaTime * 5f);
 
-            // Aplicar movimiento
-            transform.position += new Vector3(tilt * currentSpeed * Time.fixedDeltaTime, 0, 0);
+                // Aplicar movimiento
+                transform.position += new Vector3(tilt * currentSpeed * Time.fixedDeltaTime, 0, 0);
+            }
+            else
+            {
+                print("estamos en pausa");
+            }
         }
     }
 
@@ -82,14 +96,17 @@ public class GyroController : PlayerSubject
         if (other.CompareTag("hazard"))
         {
             NotifyObservers(PlayerEnum.Die);
+            source.Play();
         }
     }
    
 
     void Update()
     {
-        Move();
 
+        Move();
+        
+        
     }
 
     void Move()
