@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     [SerializeField]  GameObject gameplay;
     [SerializeField] GameObject lost;
     [SerializeField] GameObject road;
-    [SerializeField] RoadSpawner roadVelocity;
+    [SerializeField] RoadSpawner roadObject;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI highscoreText;
@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
 
     private void AddPoint()
     {
-        score += 1000;
+        score += 1;
         scoreText.text = "Score: " + score.ToString();
         scoreText2.text = "Score: " + score.ToString();
         if (highscore < score)
@@ -145,7 +145,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         gameplay.SetActive(false);
         lost.SetActive(true);
-        roadVelocity.roadSpeed = 0;
+        roadObject.roadSpeed = 0;
         GameStateChange(GAME_STATE.GAMEOVER);
 
 
@@ -191,7 +191,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
     {
         gameplay.SetActive(false);
         pause.SetActive(true);
-        roadVelocity.roadSpeed = 0;
+        roadObject.roadSpeed = 0;
         GameStateChange(GAME_STATE.PAUSE);
 
 
@@ -204,7 +204,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
         pause.SetActive(false);
         GameStateChange(GAME_STATE.GAMEPLAY);
 
-        roadVelocity.roadSpeed = 5;
+        roadObject.roadSpeed = 5;
 
 
     }
@@ -241,9 +241,13 @@ public class UIManager : MonoBehaviour, PlayerObserver
     public void Restart()
     {
         TotalCarrots();
-        road.SetActive(false);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        roadObject.ResetGeneration();
+        lost.SetActive(false);
+        gameplay.SetActive(true);
+        roadObject.roadSpeed = 5f;
+        score = 0;
+        ChangeScore();
+        GameStateChange(GAME_STATE.GAMEPLAY);
     }
 
 
@@ -255,6 +259,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
 
         score = 0;
       ChangeScore() ;
+        SoundsManager.instance.LoadVolumes();
        
     }
 
