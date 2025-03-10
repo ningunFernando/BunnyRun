@@ -81,7 +81,6 @@ public class RoadSpawner : MonoBehaviour
             Debug.LogWarning($"Repetición detectada: El segmento {newIndex} ya apareció en los últimos {historySize} caminos.");
         }
 
-        // Añadir el nuevo índice al historial
         recentIndexes.Enqueue(newIndex);
         if (recentIndexes.Count > historySize)
         {
