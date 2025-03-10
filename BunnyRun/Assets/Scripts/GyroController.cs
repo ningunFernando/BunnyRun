@@ -18,6 +18,7 @@ public class GyroController : PlayerSubject
     private Quaternion baseRotation;
     private float currentSpeed = 0f; 
     [SerializeField] AudioSource source;
+    [SerializeField] AudioSource carrot;
 
     GAME_STATE currentGameState = GAME_STATE.MAINMENU;
 
@@ -88,6 +89,7 @@ public class GyroController : PlayerSubject
         if (other.CompareTag("carrot"))
         {
             NotifyObservers(PlayerEnum.CollectCarrots);
+            carrot.Play();
         }
         if (other.CompareTag("hazard"))
         {
