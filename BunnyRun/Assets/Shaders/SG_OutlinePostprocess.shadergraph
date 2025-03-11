@@ -1559,7 +1559,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.0
     },
     "m_Labels": []
 }
@@ -1991,7 +1991,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.0
     },
     "m_Labels": []
 }
@@ -2181,8 +2181,8 @@
     "m_ObjectId": "279a2bc191bb41f48494d269bd9d99ff",
     "m_Title": "Normals Outline",
     "m_Position": {
-        "x": -2724.999755859375,
-        "y": -109.99996948242188
+        "x": -2725.0,
+        "y": -110.0
     }
 }
 
@@ -3762,7 +3762,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.0
     },
     "m_Labels": []
 }
@@ -4708,8 +4708,8 @@
     "m_ObjectId": "96b0fb745bd84c71812d9b11b2bb865e",
     "m_Title": "Color Outline",
     "m_Position": {
-        "x": -2673.999755859375,
-        "y": 794.0
+        "x": -2674.0,
+        "y": 794.0000610351563
     }
 }
 
@@ -4932,7 +4932,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.0
     },
     "m_Labels": []
 }
@@ -5156,9 +5156,6 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_DisableTint": false,
-    "m_AdditionalMotionVectorMode": 0,
-    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -5631,7 +5628,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.0
     },
     "m_Labels": []
 }

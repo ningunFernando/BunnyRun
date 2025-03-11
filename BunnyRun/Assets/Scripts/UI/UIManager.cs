@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour, PlayerObserver
         initialRotation = Camera.transform.rotation;
         road.SetActive(false);
         ChangeScore();
-        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 100);
+        totalCarrots = PlayerPrefs.GetInt("totalCarrots", 0);
         totalCarrotsText.text = "Total Carrots: " + totalCarrots.ToString();
         Debug.Log(totalCarrots);
     }

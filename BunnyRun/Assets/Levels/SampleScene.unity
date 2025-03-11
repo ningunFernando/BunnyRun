@@ -1756,6 +1756,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SFX
       objectReference: {fileID: 0}
+    - target: {fileID: 3220810089402664346, guid: bbb85364eeedf02439d7c644a20eabc3,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220810089402664346, guid: bbb85364eeedf02439d7c644a20eabc3,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 3310694186999522759, guid: bbb85364eeedf02439d7c644a20eabc3,
         type: 3}
       propertyPath: m_IsActive
@@ -2860,6 +2870,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181056847021276470, guid: bbb85364eeedf02439d7c644a20eabc3,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181056847021276470, guid: bbb85364eeedf02439d7c644a20eabc3,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 7253291248877003368, guid: bbb85364eeedf02439d7c644a20eabc3,
         type: 3}

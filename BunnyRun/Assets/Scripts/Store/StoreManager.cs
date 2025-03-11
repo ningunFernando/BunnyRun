@@ -13,7 +13,7 @@ public class StoreManager : MonoBehaviour
         public Button toggleButton;
         public TextMeshProUGUI priceText;
     }
-
+    //Hola
     public StoreItem[] items;
 
     private void Start()
