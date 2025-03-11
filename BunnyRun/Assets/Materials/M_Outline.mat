@@ -43,8 +43,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Color_Treshold: 0.283
-    - _NormalsTreshold: 1.22
+    - _Color_Treshold: 0.247
+    - _NormalsTreshold: 1.133
     - _OVERLAY: 1
     - _OutlineThickness: 0
     - _Overlay: 0

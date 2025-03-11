@@ -172,22 +172,22 @@ MonoBehaviour:
   items:
   - itemName: MSH_SombreroCopa
     itemObject: {fileID: 1277225142797118361}
-    price: 100
+    price: 10
     toggleButton: {fileID: 1657673205}
     priceText: {fileID: 572728904}
   - itemName: MSH_Flor
     itemObject: {fileID: 984824943}
-    price: 100
+    price: 6
     toggleButton: {fileID: 486232757}
     priceText: {fileID: 261125800}
   - itemName: MSH_Lentes1
     itemObject: {fileID: 73777132}
-    price: 100
+    price: 4
     toggleButton: {fileID: 971348318}
     priceText: {fileID: 1062887553}
   - itemName: MSH_SombreroMexicano
     itemObject: {fileID: 1811021590}
-    price: 100
+    price: 10
     toggleButton: {fileID: 114337450}
     priceText: {fileID: 1808407431}
 --- !u!4 &123571126
