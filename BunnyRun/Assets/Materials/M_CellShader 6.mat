@@ -47,7 +47,7 @@ Material:
     - _Min: 0.26
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shades: -0.18
+    - _Shades: 0.25
     m_Colors:
     - _Color: {r: 0.3773585, g: 0.3416122, b: 0.29725882, a: 0}
     - _Vector3: {r: 0.003, g: 0.0003, b: 4, a: 0}

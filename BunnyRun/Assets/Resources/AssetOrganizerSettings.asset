@@ -35,5 +35,9 @@ MonoBehaviour:
     folderPath: Assets/Materials
     extensions:
     - .mat
+  - prefix: 
+    folderPath: Assets/Shaders
+    extensions:
+    - .hlsl
   organizeParticlePrefabs: 0
   showDetailedLogs: 1
